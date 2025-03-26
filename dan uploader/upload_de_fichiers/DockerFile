@@ -1,0 +1,18 @@
+# Utiliser une image PHP avec Apache préconfiguré
+FROM php:8.1-apache
+
+# Définir le répertoire de travail
+WORKDIR /var/www/html
+
+# Copier les fichiers HTML et PHP dans le container
+COPY . /var/www/html
+
+# Donner les permissions nécessaires
+RUN chmod -R 755 /var/www/html && \
+    chown -R www-data:www-data /var/www/html
+
+# Exposer le port 80
+EXPOSE 80
+
+# Lancer Apache dans le container
+CMD ["apache2-foreground"]
